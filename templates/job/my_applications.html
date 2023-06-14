@@ -1,0 +1,60 @@
+{% extends "core/base.html" %}
+<!-- block title -->
+{% block title%}{{job.job_category.title}}My appplication{%endblock%} {% load
+crispy_forms_tags %}
+
+<!-- block content -->
+{% block content %}
+<!-- for loop -->
+
+<div class="container">
+  <!-- for loop -->
+
+  <!--  -->
+  <div class="row flex">
+    <div class="col-12 mb-3 justify-content-center">
+      <h1>My Applications</h1>
+    </div>
+    {% if job_item %} {% for i in job_item %}
+
+    <div class="col-sm-12 col-md-6 col-lg-3 mt-3">
+      <div class="card" style="max-height: 30rem">
+        <div class="card-body">
+          <h5
+            class="card-title"
+            style="
+              width: 200px;
+
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+            "
+          >
+            {{i.job.job_title}}
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            {{i.job.employer.full_name}}
+          </h6>
+
+          <h6 class="card-subtitle mb-2 text-muted">{{i.cv.date_applied}}</h6>
+          <a href="https://res.cloudinary.com/dlepgnfkx/{{i.cv.cv_file}}"
+            >{{i.cv.applicant.username}}'s CV</a
+          >
+
+          <a
+            href="{% url 'job_detail' i.job.job_category.slug i.job.slug %}"
+            class="btn btn-outline-success mb-2 align-items-end"
+            >More Details</a
+          >
+        </div>
+      </div>
+    </div>
+
+    {%endfor %} {% else %}
+    <h3>You currently don't have any entries</h3>
+    {% endif %}
+  </div>
+</div>
+
+<!-- endblock -->
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %} {% block title%}Application Choice{% endblock %}
+{% block content %}
+
+<div class="container">
+  <h3>Do you prefer to sign up as:</h3>
+  <a href="{% url 'applicant_sign_up' %}" class="btn btn-primary btn-lg"
+    >Applicant</a
+  >
+  <a href="{% url 'employer_sign_up' %}" class="btn btn-info btn-lg"
+    >Employer</a
+  >
+</div>
+
+{% endblock %}

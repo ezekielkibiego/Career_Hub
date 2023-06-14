@@ -1,0 +1,12 @@
+{% extends "core/base.html" %} {% block title%}Post Job{% endblock %}
+<!--  crispy -->
+{% load crispy_forms_tags %}
+<!-- content -->
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %} {{form| crispy}}
+
+  <input type="submit" name="submit" class="btn btn-primary" />
+</form>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "core/base.html" %} {% block title%}Details{% endblock %} {% load
+crispy_forms_tags %} {% block content %}
+<!-- for loop -->
+
+<!-- endfor -->
+<!-- endfor -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{job.job_title}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            {{ job.employer.full_name}}
+          </h6>
+
+          <p class="card-text text-break">{{job.job_description}}</p>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Location - {{ job.job_location}}
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Contract Type - {{ job.contract_type}}
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Job Position - {{ job.position}}
+          </h6>
+
+          {% if user.user_type == 'applicant' %}
+          <a
+            href="{% url 'job_application' job.job_category.slug job.slug %}"
+            class="btn btn-outline-info mb-2 align-items-end"
+            >Apply Now</a
+          >
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- endblock -->
+{% endblock %}

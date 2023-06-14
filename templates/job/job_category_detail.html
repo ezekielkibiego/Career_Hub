@@ -1,0 +1,73 @@
+{% extends "core/base.html" %}
+<!-- block title -->
+{% block title%}{{job.job_category.title}} Category{%endblock%} {% load
+crispy_forms_tags %}
+
+<!-- block content -->
+{% block content %}
+<div class="container">
+  <div class="row">
+    {% for i in job %}
+
+    <div class="col-sm-12 col-md-6 col-lg-3 mt-3">
+      <div class="card" style="max-height: 30rem">
+        <div class="card-body">
+          <h5
+            class="card-title"
+            style="
+              width: 200px;
+
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+            "
+          >
+            {{i.job_title}}
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            {{ i.employer.full_name}}
+          </h6>
+
+          <p
+            class="card-text"
+            style="
+              display: -webkit-box;
+              -webkit-line-clamp: 5;
+              -webkit-box-orient: vertical;
+              width: 200px;
+              height: 200px;
+              overflow: hidden;
+            "
+          >
+            {{i.job_description}}
+          </p>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Location - {{ i.job_location}}
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Contract Type - {{ i.contract_type}}
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Job Position - {{ i.position}}
+          </h6>
+          <a
+            href="{% url 'job_detail' i.job_category.slug i.slug %}"
+            class="btn btn-outline-success mb-2 align-items-end"
+            >More Details</a
+          >
+
+          {% if user.user_type == 'applicant' %}
+          <a
+            href="{% url 'job_application' i.job_category.slug i.slug %}"
+            class="btn btn-outline-info mb-2 align-items-end"
+            >Apply Now</a
+          >
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {%endfor %}
+  </div>
+</div>
+{% endblock %}

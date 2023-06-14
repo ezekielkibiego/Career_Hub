@@ -1,0 +1,18 @@
+<!-- {% for i in category %}
+
+<a class="btn btn-danger" href="{% url 'job_category_detail' i.slug %}"
+  >{{i.title}}</a
+>
+{% endfor %} -->
+
+<div class="dropdown">
+    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown">
+     Categories
+    </button>
+    <ul class="dropdown-menu">
+    {% for i in category %}
+      <li><a class="dropdown-item" href="{% url 'job_category_detail' i.slug %}">{{i.title}}</a></li>
+    {% endfor %} 
+    </ul>
+  </div>
+</div>
